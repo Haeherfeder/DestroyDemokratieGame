@@ -1,27 +1,31 @@
 package de.haeherfeder.ZerstöreDieDemokratieSpiel;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Properties;
 
 public class CreateStory {
-
-	public CreateStory(File Story,File StoryFolder,Properties p) {
-		if(Story.exists()) {
-			return;
-		}
+	public CreateStory(File Story,File StoryFolder,Properties p) throws IOException {
+		//if(Story.exists()) {
+		//	return;
+		//}
 		setPr("FirstP","Start",p);
 		setPr("Start"+"tf1"+"Text","Hallo, Herzlich Willkommen.",p);
 		setPr("Start"+"tf2"+"Text","Hallo, Feld2",p);
+		setPr("Start"+"tf3"+"Text","Hallo, Feld3",p);
 		setPr("Start"+"Next"+"A","Register",p);
-//		setPr("Start");
+		setPr("Start"+"Next"+"default","Register",p);
+		setPr("Start"+"tf3"+"Text","hi",p);
+		
+		FileWriter out = new FileWriter(Story);
+		p.store(out, "comments");
+		out.close();
+		
+		
 	}
 	private void setPr(String key,String vel,Properties p) {
-		if(p.getProperty(key)==null) {
-			p.setProperty(key, vel);
-			System.out.println(key + " wurde erstellt");
-			return;
-		}
-		System.out.println(key + " ist vorhanden " + p.getProperty(key));
+		new setPr(key,vel,p);
 		return;
 	}
 }

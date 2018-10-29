@@ -1,0 +1,8 @@
+#comments
+#Mon Oct 29 22:47:59 CET 2018
+StartNextA=Register
+Starttf1Text=Hallo, Herzlich Willkommen.
+Starttf3Text=Hallo, Feld3
+FirstP=Start
+Starttf2Text=Hallo, Feld2
+StartNextdefault=Register

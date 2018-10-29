@@ -12,15 +12,29 @@ public class GameWindow {
 
 	public GameWindow() throws IOException {
 		configFR conf = new configFR();
+		ConfigStory confSt = new ConfigStory(); 
 		TextField tf1,tf2,tf3 = null;
 		Label l1,l2,l3 = null; 
 		Panel p1,p2,p3 = null;
 		Frame f = null;
 		String Text = null;
-		String tf1_Text,tf2_Text,tf3_Text;
-		int tf1_len,tf2_len,tf3_len;
+		String tf1Text,tf2Text,tf3Text,tf1Fieldtext,tf2Fieldtext,tf3Fieldtext;
+		int tf1Fieldlen,tf2Fieldlen,tf3Fieldlen;
 		Story story = new Story();
-		tf1_Text = story.getText("tf1StartText");
+		ConfigStory confStory = new ConfigStory();
+		String tet = story.getText("FirstP");
+		System.out.println("Tet: "+tet);
+		tf1Text = story.getText(tet + "tf1Text");
+		tf2Text = story.getText(tet + "tf2Text");
+		tf3Text = story.getText(tet + "tf3Text");
+		tf1Fieldtext = story.getText(tet + "tf1Fieldtext");
+		tf2Fieldtext = story.getText(tet + "tf2Fieldtext");
+		tf3Fieldtext = story.getText(tet + "tf3Fieldtext");
+		
+		tf1Fieldlen = confStory.getLen(tet + "tf1Fieldlen");
+		tf2Fieldlen = confStory.getLen(tet + "tf2Fieldlen");
+		tf3Fieldlen = confStory.getLen(tet + "tf3Fieldlen");
+		
 		System.out.println(Inhalt.values());
 		int b,h;
 		String StB = conf.getProp("width");
@@ -34,14 +48,14 @@ public class GameWindow {
 		System.out.print("HI ");
 		int hi = 3;
 		System.out.println(hi);
-		tf1 = TextFieldG("Hallo",20);
-		tf2 = TextFieldG("h",1);
-		tf3 = TextFieldG("",1);
+		tf1 = TextFieldG(tf1Fieldtext,tf1Fieldlen);
+		tf2 = TextFieldG(tf2Fieldtext,tf2Fieldlen);
+		tf3 = TextFieldG(tf3Fieldtext,tf3Fieldlen);
 		p1 = PanelG(tf1);
 		p2 = PanelG(tf2);
 		p3 = PanelG(tf3);
-		l1 = LabelG("Inhalt");
-		l2 = LabelG("J");
+		l1 = LabelG(tf1Text);
+		l2 = LabelG(tf2Text);
 		f = FrameG("Text Show", h, b, 3, p1, l1, p2, l2, p3, l3);
 //			f.remove(p1);
 //			TextField tf2 = new TextField(Text);
