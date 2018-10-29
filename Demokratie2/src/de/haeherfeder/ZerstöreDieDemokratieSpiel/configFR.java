@@ -1,7 +1,6 @@
 package de.haeherfeder.ZerstöreDieDemokratieSpiel;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 //import java.io.Writer;
@@ -45,7 +44,7 @@ public class configFR{
 		System.out.println(config);
 		return;
 	}
-	private void setPr(String key,String vel,Properties p) {
+	public void setPr(String key,String vel,Properties p) {
 		if(p.getProperty(key)==null) {
 			p.setProperty(key, vel);
 			System.out.println(key + " wurde erstellt");

@@ -17,6 +17,10 @@ public class GameWindow {
 		Panel p1,p2,p3 = null;
 		Frame f = null;
 		String Text = null;
+		String tf1_Text,tf2_Text,tf3_Text;
+		int tf1_len,tf2_len,tf3_len;
+		Story story = new Story();
+		tf1_Text = story.getText("tf1StartText");
 		System.out.println(Inhalt.values());
 		int b,h;
 		String StB = conf.getProp("width");

@@ -9,16 +9,23 @@ public class CreateConfig {
 	private File config = new File("config/config.xml");
 	private File configFolder = new File("config");
 	
+	private void props(Properties p) {
+		setPr("hight","200",p);
+		setPr("width","800",p);
+		setPr("BuchstabeBestätigung","J",p);
+		setPr("","",p);
+	}
+	
+	
 	public CreateConfig(Properties p) throws IOException {
 		if(!configFolder.exists()) 	{configFolder.mkdirs();}
 		if(config.exists()) 	{
 			if(config.length()==0) { return;}
 		}
 		if(!config.exists()) 	{config.createNewFile();}
-		
 //		add Properties
-		setPr("hight","200",p);
-		setPr("width","800",p);
+		props(p);
+		
 		FileWriter out = new FileWriter(config);
 		p.store(out," comments");
 		out.close();
