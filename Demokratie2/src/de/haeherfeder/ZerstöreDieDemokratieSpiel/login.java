@@ -70,6 +70,10 @@ public class login {
 		p.load(reader);
 		reader.close();
 		String Name = tf1.getText();
-		p.setProperty(Name, "true");
+		
+		if(p.getProperty(Name)==null) {
+			register r = new register(Name);
+		}
+		
 	}
 }
