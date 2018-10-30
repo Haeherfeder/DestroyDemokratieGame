@@ -19,10 +19,8 @@ public class Story {
 		if(!StoryFolder.exists()) {StoryFolder.mkdirs();}
 //		if(!Story.exists()) {
 			new CreateStory(Story,StoryFolder,p);
+			System.out.println("Story wurde erstellt.");
 //		}
-		
-		
-		
 		FileReader read = new FileReader(Story);
 		p.load(read);
 		read.close();
@@ -36,6 +34,12 @@ public class Story {
 	}
 	public int getLen(String key){
 		String vel = p.getProperty(key);
+		if(vel==null) {
+			if (key=="default") {
+				return 5;
+			}
+		return getLen("default");
+		}
 		int h = Integer.parseInt(vel);
 		return h;
 	}

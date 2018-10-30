@@ -117,7 +117,8 @@ public class main2 {
 		configFR conf = new configFR();
 		conf.configFRSt();
 		System.out.println(conf.getProp("key"));
-		GameWindow game = new GameWindow();
+		String Gamestart = null;
+		GameWindow game = new GameWindow(Gamestart);
 		return;
 	}/*
 	public Panel PanelG(TextField tf) {

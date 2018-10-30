@@ -1,4 +1,5 @@
 package de.haeherfeder.ZerstöreDieDemokratieSpiel;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -59,6 +60,18 @@ public class configFR{
 		read.close();
 		System.out.println(key);
 		System.out.println(p.getProperty(key));
+		if(p.getProperty(key)==null) {return "not defined";}
 		return p.getProperty(key);
+	}
+	public int getInt(String key){
+		String vel = p.getProperty(key);
+		if(vel==null) {
+			if (key=="default") {
+				return 5;
+			}
+		return getInt("default");
+		}
+		int h = Integer.parseInt(vel);
+		return h;
 	}
 }

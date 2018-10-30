@@ -14,6 +14,7 @@ public class CreateConfig {
 		setPr("width","800",p);
 		setPr("BuchstabeBestätigung","J",p);
 		setPr("","",p);
+		setPr("timesleep","8",p);
 	}
 	
 	
