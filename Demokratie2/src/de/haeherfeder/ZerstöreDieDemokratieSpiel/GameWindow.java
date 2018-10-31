@@ -58,7 +58,7 @@ public class GameWindow {
 		l2 = LabelG(tf2Text);
 		l3 = LabelG(tf3Text);
 		switch(tet) {
-		case "register":
+		case "Register":
 			new login(h,b,n,p1,l1,p2,l2,p3,l3,tf1,tf2,tf3);
 			return;
 		case "ende":
@@ -95,8 +95,15 @@ public class GameWindow {
 		}
 		f.removeAll();
 		f.setVisible(false);
+		boolean hi = tet!="Start";
 		tet = story.getText(tet+"Next"+Text);
+//		boolean hi = tet!="Start";
 		if (tet == null) {return;}
+		if(!hi) {
+			String Name = conf.getProp("CurrentPlayer");
+			PlayerConfig c = new PlayerConfig(Name);
+			conf.setPr("CurrentPlayer", tet);
+		}
 		new GameWindow(tet);
 		return;
 	}

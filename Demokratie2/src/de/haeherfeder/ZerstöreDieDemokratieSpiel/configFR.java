@@ -2,6 +2,8 @@ package de.haeherfeder.ZerstöreDieDemokratieSpiel;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FilterWriter;
 import java.io.IOException;
 import java.util.Properties;
 //import java.io.Writer;
@@ -45,13 +47,41 @@ public class configFR{
 		System.out.println(config);
 		return;
 	}
-	public void setPr(String key,String vel,Properties p) {
+	public void setPr(String key,String vel,Properties p) throws IOException {
+		FileWriter write = new FileWriter(config);
 		if(p.getProperty(key)==null) {
 			p.setProperty(key, vel);
 			System.out.println(key + " wurde erstellt");
+			p.store(write, "neu value: "+vel);
+			write.close();
 			return;
 		}
+		
+		if(key=="CurrentPlayer") {
+			p.setProperty(key, vel);
+			p.store(write, "comments");
+			write.close();
+		}
 		System.out.println(key + " ist vorhanden " + p.getProperty(key));
+		write.close();
+		return;
+	}
+	public void setPr(String key,String vel) throws IOException {
+		FileWriter write = new FileWriter(config);
+		if(p.getProperty(key)==null) {
+			p.setProperty(key, vel);
+			System.out.println(key + " wurde erstellt");
+			p.store(write, "neu value: "+vel);
+			write.close();
+			return;
+		}
+		if(key=="CurrentPlayer") {
+			p.setProperty(key, vel);
+			p.store(write, "comments");
+			write.close();
+		}
+		System.out.println(key + " ist vorhanden " + p.getProperty(key));
+		write.close();
 		return;
 	}
 	public String getProp(String key) throws IOException {

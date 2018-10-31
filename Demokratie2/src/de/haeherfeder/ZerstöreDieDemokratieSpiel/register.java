@@ -27,6 +27,7 @@ public class register {
 			red3.close();
 			int i=1;
 			boolean KeyIsEx = p.containsKey(i);
+			p4.setProperty("CurrentWindow", "RegisterNext");
 			
 			while(KeyIsEx){
 				p.getProperty(String.valueOf(i));
@@ -36,10 +37,9 @@ public class register {
 				KeyIsEx = p.containsKey(i);
 			}
 			FileWriter writer=new FileWriter(persconf);
-			p4.store(writer,"Daten von"+Name);
+			p4.store(writer,"Daten von "+Name);
 			writer.close();
 		}
 		return;
-	}
-	
+	}	
 }

@@ -3,15 +3,11 @@ package de.haeherfeder.ZerstöreDieDemokratieSpiel;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -48,11 +44,13 @@ public class login {
 		f.pack();
 		f.setSize(b, h);
 //		Image d = new Image("fde.png");
-		f.setBackground(Color.green);
+//		f.setBackground(Color.green);
 //		f.setIconImage(d);
+		f.setBackground(Color.GREEN);
 		f.setVisible(true);
 		configFR conf = new configFR();
 		int timesleep = conf.getInt("timesleep");
+		String BuchstabeBestätigung = conf.getProp("BuchstabeBestätigung");
 		while(true) {
 		System.out.println("Gelesen: " + tf2.getText());
 		try {
@@ -60,8 +58,8 @@ public class login {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(tf2.getText().matches("J")) {
-				System.out.println("Ende, J gelesen.");
+			if(tf2.getText().matches(BuchstabeBestätigung)) {
+				System.out.println("Ende, "+BuchstabeBestätigung+" gelesen.");
 				break;
 			}	
 		}	
@@ -70,10 +68,26 @@ public class login {
 		p.load(reader);
 		reader.close();
 		String Name = tf1.getText();
+		conf.setPr("CurrentPlayer", Name);
 		
-		if(p.getProperty(Name)==null) {
-			register r = new register(Name);
+		if(p.getProperty(Name)!="true") {
+			new register(Name);
+			
 		}
+		Properties confpl = new Properties();
+		FileReader readerconfpl= new FileReader("config/players/"+Name+".txt");
+		System.out.println("Name: "+Name);
+		confpl.load(readerconfpl);
+		readerconfpl.close();
 		
+		String CurrentWindow = confpl.getProperty("CurrentWindow");
+		f.removeAll();
+		new GameWindow(CurrentWindow);
+		return;
+//		String Time = confpl.getProperty("Time");
+//		int time = Integer.parseInt(Time);
+//		ConfigStory story = new ConfigStory();
+//		String tet = story.getText("Register"+"Next");
+//		String tet = confpl.getProperty(Name);
 	}
 }
