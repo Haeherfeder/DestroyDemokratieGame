@@ -82,6 +82,7 @@ public class login {
 		
 		String CurrentWindow = confpl.getProperty("CurrentWindow");
 		f.removeAll();
+		f.setVisible(false);
 		new GameWindow(CurrentWindow);
 		return;
 //		String Time = confpl.getProperty("Time");

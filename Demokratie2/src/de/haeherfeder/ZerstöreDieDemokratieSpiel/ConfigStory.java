@@ -15,10 +15,12 @@ public class ConfigStory {
 		if(!StoryFolder.exists()) {StoryFolder.mkdirs();}
 //		if(!StoryConfig.exists()) {new CreateConfigStory(StoryConfig,p);
 		new CreateConfigStory(StoryConfig,p);
-			System.out.println("Storyconf"+p);
+			System.out.println("Storyconf "+p);
 		FileReader read = new FileReader(StoryConfig);
 		p.load(read);
 		read.close();
+		System.out.println("Storyconf "+p);
+		return;
 	}
 	public String getText(String key){
 		String vel = p.getProperty(key);

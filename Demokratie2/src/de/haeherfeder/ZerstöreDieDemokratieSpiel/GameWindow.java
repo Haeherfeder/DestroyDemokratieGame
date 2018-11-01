@@ -9,19 +9,18 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class GameWindow {
-
-	public GameWindow(String tet) throws IOException {
 		configFR conf = new configFR();
-		conf.configFRSt();
 		TextField tf1,tf2,tf3 = null;
 		Label l1,l2,l3 = null; 
 		Panel p1,p2,p3 = null;
 		Frame f = null;
 		String Text = null;
-		String tf1Text,tf2Text,tf3Text,tf1Fieldtext,tf2Fieldtext,tf3Fieldtext = null;
+		String tf1Text,tf2Text,tf3Text,tf1Fieldtext,tf2Fieldtext,tf3Fieldtext,PanelName = null;
 		int tf1Fieldlen,tf2Fieldlen,tf3Fieldlen,n;
 		Story story = new Story();
 		ConfigStory confStory = new ConfigStory();
+	public GameWindow(String tet) throws IOException {
+		System.out.println("TetStart: "+tet);
 		if(tet==null) {tet = story.getText("FirstP");}
 		System.out.println("Tet: "+tet);
 		tf1Text = story.getText(tet + "tf1Text");
@@ -32,12 +31,11 @@ public class GameWindow {
 		System.out.println("TfText: "+tf1Fieldtext);
 		tf2Fieldtext = story.getText(tet + "tf2Fieldtext");
 		tf3Fieldtext = story.getText(tet + "tf3Fieldtext");
-		
+		PanelName = story.getText(tet+"PanelName");
 		tf1Fieldlen = confStory.getLen(tet + "tf1Fieldlen");
 		tf2Fieldlen = confStory.getLen(tet + "tf2Fieldlen");
 		tf3Fieldlen = confStory.getLen(tet + "tf3Fieldlen");
 		n = confStory.getLen(tet+"nField");
-		
 		System.out.println(Inhalt.values());
 		int b,h;
 		String StB = conf.getProp("width");
@@ -65,7 +63,7 @@ public class GameWindow {
 			return;
 		default:
 			break;}
-		f = FrameG("Text Show", h, b, n, p1, l1, p2, l2, p3, l3);
+		f = FrameG(PanelName, h, b, n, p1, l1, p2, l2, p3, l3);
 //			f.remove(p1);
 //			TextField tf2 = new TextField(Text);
 		System.out.println("f");
@@ -95,14 +93,65 @@ public class GameWindow {
 		}
 		f.removeAll();
 		f.setVisible(false);
-		boolean hi = tet!="Start";
-		tet = story.getText(tet+"Next"+Text);
+		boolean hi = false;
+		if(!tet.matches("Start")) {
+			hi = true;
+		}
+		System.out.println("Tet: "+tet+" hi: "+hi);
 //		boolean hi = tet!="Start";
-		if (tet == null) {return;}
-		if(!hi) {
+		System.out.println(tet+"Next"+Text);
+		System.out.println(story.getText(tet+"Next"+Text));
+		if (story.getText(tet+"Next"+Text)==null) {
+			System.out.println("Weg nicht defined");
+			String NotDefined = story.getText("NotDefined");
+			if(NotDefined==null) {
+				if(!(story.getText(tet+"Next"+"Default")==null)) {
+					tet = story.getText(tet+"Next"+"Default");
+					if(hi) {
+						String Name = conf.getProp("CurrentPlayer");
+						PlayerConfig c = new PlayerConfig(Name);
+						conf.setPr("CurrentPlayer", tet);
+						c.setCurrentWindow(tet,Name);
+					}
+					new GameWindow(tet);
+				}
+				return;
+			}
+			if(NotDefined.matches("back")) {
+				if(hi) {
+					String Name = conf.getProp("CurrentPlayer");
+					PlayerConfig c = new PlayerConfig(Name);
+					conf.setPr("CurrentPlayer", tet);
+					c.setCurrentWindow(tet,Name);
+				}
+				new GameWindow(tet);
+				return;
+			}
+			if(!(story.getText(tet+"Next"+"Default")==null)) {
+				if(hi) {
+					String Name = conf.getProp("CurrentPlayer");
+					PlayerConfig c = new PlayerConfig(Name);
+					conf.setPr("CurrentPlayer", tet);
+					c.setCurrentWindow(tet,Name);
+				}
+				new GameWindow(story.getText(tet+"Next"+"Default"));
+			}
+			if(hi) {
+				String Name = conf.getProp("CurrentPlayer");
+				PlayerConfig c = new PlayerConfig(Name);
+				conf.setPr("CurrentPlayer", Name);
+				c.setCurrentWindow(NotDefined,Name);
+			}
+			new GameWindow(NotDefined);
+			return;
+		}
+		System.out.println(hi);
+		tet = story.getText(tet+"Next"+Text);
+		if(hi) {
 			String Name = conf.getProp("CurrentPlayer");
 			PlayerConfig c = new PlayerConfig(Name);
 			conf.setPr("CurrentPlayer", tet);
+			c.setCurrentWindow(tet,Name);	
 		}
 		new GameWindow(tet);
 		return;

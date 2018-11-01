@@ -117,6 +117,7 @@ public class main2 {
 		configFR conf = new configFR();
 		conf.configFRSt();
 		System.out.println(conf.getProp("key"));
+		conf.setPr("CurrentPlayer","");
 		String Gamestart = null;
 		GameWindow game = new GameWindow(Gamestart);
 		return;

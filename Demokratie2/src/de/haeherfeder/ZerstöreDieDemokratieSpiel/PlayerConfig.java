@@ -26,9 +26,12 @@ public class PlayerConfig {
 		}
 		return Value;
 	}
-	public void setCurrentWindow(String value) throws IOException {
+	public void setCurrentWindow(String value, String Name) throws IOException {
+		FileReader readerconfpl= new FileReader("config/players/"+Name+".txt");
+		confpl.load(readerconfpl);
+		readerconfpl.close();
 		confpl.setProperty("CurrentWindow", value);
-		FileWriter write = new FileWriter("");
+		FileWriter write = new FileWriter("config/players/"+Name+".txt");
 		write.close();
 		return;
 	}

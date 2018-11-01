@@ -1,11 +1,21 @@
 #comments
-#Tue Oct 30 15:53:24 CET 2018
-StartNextA=Register
+#Thu Nov 01 09:51:29 CET 2018
+Einfuerungtf3Fieldtext=
+EinfuerungNextdefault=
+Einfuerungtf1Text=Dies ist die Einführung.
+Starttf1Fieldtext=Hier Antwort eintragen
+FirstP=Start
+Einfuerungtf1Fieldtext=Hier Antwort eintragen
+Starttf3Text=Hallo, Feld3
+Einfuerungtf3Text=Hallo, Feld3
 StartNextdefault=Register
 Starttf2Fieldtext=
-Starttf3Text=Hallo, Feld3
+Einfuerungtf2Fieldtext=
 Starttf2Text=Hallo, Feld2
-FirstP=Start
+Einfuerungtf2Text=In das 2. Feld kommt 
+StartNextA=Register
+Registertf1Text=Hallo, das ist das Anmeldeformular
+RegisterNext=Einfuerung
 Starttf3Fieldtext=
+EinfuerungNextA=Ende
 Starttf1Text=Hallo, Herzlich Willkommen.
-Starttf1Fieldtext=Hier Antwort eintragen

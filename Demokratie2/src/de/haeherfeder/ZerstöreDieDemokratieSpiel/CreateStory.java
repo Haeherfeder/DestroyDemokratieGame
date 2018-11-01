@@ -8,9 +8,9 @@ import java.util.Properties;
 
 public class CreateStory {
 	public CreateStory(File Story,File StoryFolder,Properties p) throws IOException {
-		//if(Story.exists()) {
-		//	return;
-		//}
+		if(Story.exists()) {
+			return;
+		}
 		FileReader read = new FileReader(Story);
 		p.load(read);
 		read.close();
