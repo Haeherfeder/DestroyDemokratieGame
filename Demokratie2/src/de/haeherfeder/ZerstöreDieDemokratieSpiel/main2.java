@@ -3,18 +3,9 @@
  */
 package de.haeherfeder.ZerstöreDieDemokratieSpiel;
 
-/**
- * @author benjamin
- *
- */
-//import javax.swing.JFrame;
-import java.awt.*;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 public class main2 {
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated constructor stub
 /*	JFrame gameTest = new JFrame();
 	gameTest.setTitle("Game Register");
 	gameTest.setSize(300, 150);
@@ -36,7 +27,7 @@ public class main2 {
 	register(Name,panel,tfName,tfName2);*/
 	new main2();
 	System.out.println("Ende");
-	return;
+	System.exit(0);
 	}
 /*	private void register(String Name, JPanel panel,JTextField tfName,JTextField tfName2) {
 		while(!false) {
@@ -77,7 +68,6 @@ public class main2 {
 		try {
 			TimeUnit.SECONDS.sleep(8);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(tf2.getText().matches("J")) {
@@ -119,7 +109,7 @@ public class main2 {
 		System.out.println(conf.getProp("key"));
 		conf.setPr("CurrentPlayer","");
 		String Gamestart = null;
-		GameWindow game = new GameWindow(Gamestart);
+		new GameWindow(Gamestart);
 		return;
 	}/*
 	public Panel PanelG(TextField tf) {

@@ -10,7 +10,6 @@ public class register {
 	Story Story = new Story();
 	public register(String Name) throws IOException {
 		Properties p = new Properties();
-		Properties p2 = new Properties();
 		Properties p3 = new Properties();
 		Properties p4 = new Properties();
 		Properties listp = new Properties();
@@ -25,8 +24,11 @@ public class register {
 		File persconf = new File("config/players/"+Name+".txt");
 		if(!persconf.exists()){persconf.createNewFile();}
 		File defconf = new File("config/players/default.txt");
+		if(!defconf.exists()) {defconf.createNewFile();}
 		File defconf2 = new File("config/players/default2.txt");
+		if(!defconf2.exists()) {defconf2.createNewFile();}
 		File defconf3 = new File("config/players/default3.txt");
+		if(!defconf3.exists()) {defconf3.createNewFile();}
 		if(defconf.exists()&&defconf2.exists()&&defconf3.exists()) {
 			FileReader red = new FileReader(defconf);
 			p.load(red);
@@ -48,6 +50,9 @@ public class register {
 			FileWriter writer2 = new FileWriter(persconf);
 			p4.store(writer2,"Daten von "+Name);
 			writer2.close();
+		}else {
+			System.out.println("Dateien nicht vorhanden");
+			System.exit(2);
 		}
 		return;
 	}	
